@@ -8,8 +8,6 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-700: oklch(50.5% 0.213 27.518);
-    --color-amber-50: oklch(98.7% 0.022 95.277);
-    --color-amber-700: oklch(55.5% 0.163 48.998);
     --color-amber-900: oklch(41.4% 0.112 45.904);
     --color-amber-950: oklch(27.9% 0.077 45.635);
     --color-green-400: oklch(79.2% 0.209 151.711);
@@ -19,7 +17,6 @@
     --color-emerald-400: oklch(76.5% 0.177 163.223);
     --color-teal-800: oklch(43.7% 0.078 188.216);
     --color-blue-600: oklch(54.6% 0.245 262.881);
-    --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-slate-400: oklch(70.4% 0.04 256.788);
     --color-slate-700: oklch(37.2% 0.044 257.287);
     --color-slate-800: oklch(27.9% 0.041 260.031);
@@ -50,12 +47,15 @@
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
     --text-7xl: 4.5rem;
     --text-7xl--line-height: 1;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
+    --tracking-tight: -0.025em;
     --tracking-wide: 0.025em;
     --tracking-widest: 0.1em;
     --leading-tight: 1.25;
@@ -266,6 +266,9 @@
   .grid {
     display: grid;
   }
+  .table {
+    display: table;
+  }
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
@@ -308,8 +311,14 @@
   .max-w-xl {
     max-width: var(--container-xl);
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -405,6 +414,9 @@
   }
   .bg-gray-800 {
     background-color: var(--color-gray-800);
+  }
+  .bg-slate-800 {
+    background-color: var(--color-slate-800);
   }
   .bg-slate-800\/70 {
     background-color: color-mix(in srgb, oklch(27.9% 0.041 260.031) 70%, transparent);
@@ -545,6 +557,10 @@
     --tw-tracking: 0.3em;
     letter-spacing: 0.3em;
   }
+  .tracking-tight {
+    --tw-tracking: var(--tracking-tight);
+    letter-spacing: var(--tracking-tight);
+  }
   .tracking-wide {
     --tw-tracking: var(--tracking-wide);
     letter-spacing: var(--tracking-wide);
@@ -573,6 +589,9 @@
   }
   .text-green-500 {
     color: var(--color-green-500);
+  }
+  .text-green-600 {
+    color: var(--color-green-600);
   }
   .text-green-700 {
     color: var(--color-green-700);
@@ -605,6 +624,10 @@
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
@@ -753,6 +776,12 @@
       line-height: var(--tw-leading, var(--text-5xl--line-height));
     }
   }
+  .md\:text-6xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-6xl);
+      line-height: var(--tw-leading, var(--text-6xl--line-height));
+    }
+  }
   .lg\:ml-15 {
     @media (width >= 64rem) {
       margin-left: calc(var(--spacing) * 15);
@@ -882,6 +911,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -938,6 +972,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
